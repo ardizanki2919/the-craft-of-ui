@@ -1,38 +1,38 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
-import search from "@inquirer/search";
-import chalk from "chalk";
-import slugify from "slugify";
+import { promises as fs } from "node:fs"
+import path from "node:path"
+import search from "@inquirer/search"
+import chalk from "chalk"
+import slugify from "slugify"
 
 const getModules = async () => {
-  const contentPath = `${process.cwd()}/src/pages/`;
-  const modules = [];
+  const contentPath = `${process.cwd()}/src/pages/`
+  const modules = []
 
   async function listDir(dir) {
     try {
-      const files = await fs.readdir(dir, { withFileTypes: true });
+      const files = await fs.readdir(dir, { withFileTypes: true })
       const subDirPromises = files.map(async (file) => {
         if (file.isDirectory()) {
-          const fullPath = path.join(dir, file.name);
+          const fullPath = path.join(dir, file.name)
           modules.push({
             name: fullPath.replace(contentPath, ""),
             value: fullPath.replace(contentPath, ""),
-          });
-          await listDir(fullPath);
+          })
+          await listDir(fullPath)
         }
-      });
-      await Promise.all(subDirPromises);
+      })
+      await Promise.all(subDirPromises)
     } catch (error) {
       console.error(
         chalk.red(`Error reading content for ${dir}:`, error.message),
-      );
+      )
     }
   }
-  await listDir(contentPath);
-  return modules;
-};
+  await listDir(contentPath)
+  return modules
+}
 
-const modules = await getModules();
+const modules = await getModules()
 
 const prompts = async (inquirer) => {
   const section = await (
@@ -55,7 +55,7 @@ const prompts = async (inquirer) => {
         },
       ],
     })
-  ).section;
+  ).section
   const title = await (
     await inquirer.prompt({
       type: "input",
@@ -63,7 +63,7 @@ const prompts = async (inquirer) => {
       validate: (input) => input.length > 0,
       message: "title for this lesson",
     })
-  ).title;
+  ).title
   const navTitle = await (
     await inquirer.prompt({
       type: "input",
@@ -71,7 +71,7 @@ const prompts = async (inquirer) => {
       validate: (input) => input.length > 0,
       message: "title that appears in nav",
     })
-  ).navTitle;
+  ).navTitle
   const slug = await (
     await inquirer.prompt({
       type: "input",
@@ -83,7 +83,7 @@ const prompts = async (inquirer) => {
       message: "slug for lesson",
       validate: (input) => /^[a-z0-9-]+$/.test(input) || "use a valid URL slug",
     })
-  ).slug;
+  ).slug
   const mod = await search({
     name: "module",
     message: "which module does thie lesson belong to? (autocomplete)",
@@ -99,8 +99,8 @@ const prompts = async (inquirer) => {
             return {
               name: m.name.substring(m.name.indexOf("/") + 1),
               value: m.value.substring(m.value.indexOf("/") + 1),
-            };
-          });
+            }
+          })
       const options = [
         {
           name: `Create module: ${value}`,
@@ -117,20 +117,20 @@ const prompts = async (inquirer) => {
             return {
               name: m.name.substring(m.name.indexOf("/") + 1),
               value: m.value.substring(m.value.indexOf("/") + 1),
-            };
+            }
           }),
-      ];
-      return options;
+      ]
+      return options
     },
-  });
+  })
   return {
     section,
     title,
     navTitle,
     slug,
     mod,
-  };
-};
+  }
+}
 
 const createLesson = (plop) => {
   plop.setGenerator("new lesson", {
@@ -148,7 +148,7 @@ const createLesson = (plop) => {
             .replace(),
       },
     ],
-  });
-};
+  })
+}
 
-export default createLesson;
+export default createLesson
