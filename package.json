@@ -20,6 +20,7 @@
     "chalk": "^5.4.1",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
+    "normalize.css": "^8.0.1",
     "plop": "^4.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

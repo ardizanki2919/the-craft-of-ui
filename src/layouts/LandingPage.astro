@@ -1,0 +1,69 @@
+---
+import { clsx } from "clsx";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>The Craft of UI</title>
+  </head>
+  <body>
+    <div
+      class="h-[var(--header-height)] sticky top-0 flex items-center justify-between px-[var(--gutter)]"
+    >
+      <a aria-label="Home" href="/">
+        <svg
+          class="w-7 opacity-50"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M6 3h12l4 6-10 13L2 9Z"></path><path
+            d="M11 3 8 9l4 13 4-13-3-6"></path><path d="M2 9h20"></path></svg
+        >
+      </a>
+      <nav class="flex gap-x-4 items-center">
+        <a href="#">Blog</a>
+        <a href="#">Join Waitlist</a>
+      </nav>
+    </div>
+    <div
+      class={clsx(
+        "fixed inset-0 overflow-auto",
+        "[mask:linear-gradient(#0000_var(--header-height),#fff_calc(var(--header-height)*2))]",
+      )}
+    >
+      <div
+        class={clsx(
+          "w-[var(--content)] max-w-[calc(100vw-(2*var(--gutter)))] mx-auto min-h-[100svh]",
+          "pt-[calc(2*var(--header-height))]",
+        )}
+      >
+        <header class="mb-48">
+          The Craft of UI — by Jhey Tompkins
+          <h1>What if you could build anything?</h1>
+          <p>
+            Master the tools, thinking, and techniques behind exceptional user
+            interfaces.
+          </p>
+        </header>
+        <main class={clsx("[&_p]:my-4 leading-[1.5]")}>
+          <slot />
+        </main>
+        <form>
+          <input type="text" placeholder="preferred name" />
+          <input type="email" placeholder="email" required />
+          <button type="submit">Join Waitlist</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
