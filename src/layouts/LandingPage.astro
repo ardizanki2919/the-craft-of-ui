@@ -1,5 +1,8 @@
 ---
 import { clsx } from "clsx";
+import { Font, Image } from "astro:assets";
+import WaitlistForm from "@components/waitlist-form/index.astro";
+import headshot from "../assets/headshot.jpeg";
 import "../styles/global.css";
 ---
 
@@ -10,15 +13,17 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-serif" preload />
+    <Font cssVariable="--font-sans" preload />
     <title>The Craft of UI</title>
   </head>
-  <body>
+  <body class="font-sans">
     <div
-      class="h-[var(--header-height)] sticky top-0 flex items-center justify-between px-[var(--gutter)]"
+      class="z-50 h-[var(--header-height)] sticky top-0 flex items-center justify-between px-[var(--gutter)]"
     >
       <a aria-label="Home" href="/">
         <svg
-          class="w-7 opacity-50"
+          class="w-7 opacity-80"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
@@ -31,14 +36,15 @@ import "../styles/global.css";
         >
       </a>
       <nav class="flex gap-x-4 items-center">
-        <a href="#">Blog</a>
+        <a href="https://newsletter.craftofui.com" target="_blank">Blog</a>
         <a href="#">Join Waitlist</a>
       </nav>
     </div>
     <div
       class={clsx(
-        "fixed inset-0 overflow-auto",
-        "[mask:linear-gradient(#0000_var(--header-height),#fff_calc(var(--header-height)*2))]",
+        "[--start:var(--header-height)] lg:[--start:0]",
+        "fixed inset-0 overflow-auto pb-[calc(var(--header-height)*2)]",
+        "[mask:linear-gradient(#0000_var(--start),#fff_calc(var(--header-height))_calc(100%-(var(--header-height)*1)),#0000_calc(100%))]",
       )}
     >
       <div
@@ -47,22 +53,37 @@ import "../styles/global.css";
           "pt-[calc(2*var(--header-height))]",
         )}
       >
-        <header class="mb-48">
-          The Craft of UI — by Jhey Tompkins
-          <h1>What if you could build anything?</h1>
-          <p>
-            Master the tools, thinking, and techniques behind exceptional user
-            interfaces.
+        <header class="mb-48 text-[canvasText]">
+          <p
+            class="text-sm text-gray-800 dark:text-gray-200 mb-4 flex items-center font-[200]"
+          >
+            The Craft of UI — by&nbsp;<a
+              aria-label="Jhey Tompkins"
+              class="flex items-center gap-x-2 hover:text-red-500 outline-red-500"
+              href="https://twitter.com/intent/follow?screen_name=jh3yy"
+              target="_blank"
+              >Jhey Tompkins<Image
+                class="rounded-full"
+                src={headshot}
+                alt=""
+                width={28}
+                height={28}
+              /></a
+            >
+          </p>
+          <h1 class="font-serif text-fluid [--font-level:4] leading-none mb-6">
+            What if you could build <span class="text-red-400">anything</span>?
+          </h1>
+          <p class="text-fluid [--font-level:0.6] leading-[1.25] font-[200]">
+            Master the tools, thinking, and techniques behind crafting
+            exceptional user interfaces with HTML, CSS, and JavaScript
           </p>
         </header>
-        <main class={clsx("[&_p]:my-4 leading-[1.5]")}>
+        <main class={clsx("[&_p]:mb-8 leading-[1.5] [&_p]:text-md")}>
+          <WaitlistForm id="header" />
           <slot />
+          <WaitlistForm id="footer" />
         </main>
-        <form>
-          <input type="text" placeholder="preferred name" />
-          <input type="email" placeholder="email" required />
-          <button type="submit">Join Waitlist</button>
-        </form>
       </div>
     </div>
   </body>

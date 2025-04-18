@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
@@ -10,6 +10,19 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Inter",
+        cssVariable: "--font-sans",
+      },
+      {
+        provider: fontProviders.google(),
+        name: "DM Serif Text",
+        cssVariable: "--font-serif",
+      },
+    ],
+  },
   integrations: [mdx(), react()],
 });

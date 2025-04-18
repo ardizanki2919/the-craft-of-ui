@@ -10,13 +10,13 @@
     "new-lesson": "plop"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.8",
-    "@astrojs/react": "^4.2.0",
+    "@astrojs/mdx": "^4.2.4",
+    "@astrojs/react": "^4.2.4",
     "@inquirer/search": "^3.0.9",
     "@tailwindcss/vite": "^4.0.8",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "astro": "^5.3.0",
+    "astro": "^5.7.4",
     "chalk": "^5.4.1",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",

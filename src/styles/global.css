@@ -1,16 +1,12 @@
 /* @import "normalize.css"; */
 @import "tailwindcss";
 
-h1 {
-  @apply text-2xl text-red-500;
-}
-
 :root {
   --header-height: 80px;
   --content: 600px;
   --gutter: 1.5rem;
 
-  --font-size-min: 16;
+  --font-size-min: 14;
   --font-size-max: 20;
   --font-ratio-min: 1.2;
   --font-ratio-max: 1.33;
@@ -18,8 +14,14 @@ h1 {
   --font-width-max: 1500;
 }
 
+@theme {
+  --breakpoint-lg: 968px;
+}
+
 html {
   color-scheme: light dark;
+  scrollbar-color: light-dark(var(--color-red-300), var(--color-red-500)) #0000;
+  scrollbar-width: thin;
 }
 
 [data-theme="light"] {
@@ -30,7 +32,7 @@ html {
   color-scheme: dark only;
 }
 
-:where(.fluid) {
+.text-fluid {
   --fluid-min: calc(
     var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
   );
@@ -58,10 +60,13 @@ html {
 }
 
 body {
-  background: light-dark(#fff, #000);
-  font-family:
-    "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica,
-    Arial, sans-serif, system-ui;
+  color: color-mix(in oklch, canvasText, canvas 40%);
+  background: light-dark(
+    color-mix(in oklch, #fff, hsl(45 80% 50%) 5%),
+    hsl(210 10% 10%)
+  );
+  font-family: var(--font-sans);
+  font-weight: 300;
 }
 
 body::before {
@@ -72,10 +77,10 @@ body::before {
   width: 100vw;
   position: fixed;
   background:
-    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size))
-      calc(50% - 5px) 50% / var(--size) var(--size),
-    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50%
-      calc(50% + 20px) / var(--size) var(--size);
+    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 17px
+      50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 19px /
+      var(--size) var(--size);
   mask: linear-gradient(-30deg, transparent 70%, white);
   top: 0;
   transform-style: flat;
