@@ -16,8 +16,8 @@ const { id } = Astro.props;
       <label class="sr-only" for={`${id}-name`}>Preferred name</label>
       <input
         class={clsx(
-          "rounded-md border border-gray-300 h-9 text-sm px-4 flex-1 outline-none",
-          "focus-visible:border-red-400",
+          "rounded-md border border-gray-300 h-9 px-4 flex-1 outline-none",
+          "focus-visible:border-red-400 placeholder:text-sm",
           "placeholder:text-gray-400 text-[canvasText]",
         )}
         id={`${id}-name`}
@@ -27,8 +27,8 @@ const { id } = Astro.props;
       <label class="sr-only" for={`${id}-email`}>Email Address</label>
       <input
         class={clsx(
-          "rounded-md border border-gray-300 h-9 text-sm px-4 flex-1 outline-none",
-          "focus-visible:border-red-400",
+          "rounded-md border border-gray-300 h-9 px-4 flex-1 outline-none",
+          "focus-visible:border-red-400 placeholder:text-sm",
           "placeholder:text-gray-400 text-[canvasText]",
         )}
         id={`${id}-email`}

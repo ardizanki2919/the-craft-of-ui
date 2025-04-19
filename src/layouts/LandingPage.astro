@@ -18,10 +18,7 @@ const ogImageUrl = "";
     <meta charset="utf-8" />
     <meta name="description" property="og:description" content={description} />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000" />
     <link rel="manifest" href="/manifest.json" />
     <link
@@ -136,7 +133,7 @@ const ogImageUrl = "";
         <main class={clsx("[&>p]:mb-8 leading-[1.5] [&_p]:text-md")}>
           <WaitlistForm id="header" />
           <slot />
-          <div class="relative text-white flex justify-end">
+          <div class="relative text-[canvasText] flex justify-end">
             <svg
               class="sig"
               viewBox="0 0 271 209"
