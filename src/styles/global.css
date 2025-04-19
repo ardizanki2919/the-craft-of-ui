@@ -45,12 +45,10 @@
 
 html {
   color-scheme: light dark;
-  scrollbar-color: light-dark(var(--color-red-300), var(--color-red-500)) #0000;
+  scrollbar-color: light-dark(var(--color-red-400), var(--color-red-500)) #0000;
   scrollbar-width: thin;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html,
-  body,
   .overflow-auto {
     scroll-behavior: smooth;
   }
@@ -94,7 +92,7 @@ html {
 body {
   color: color-mix(in oklch, canvasText, canvas 40%);
   background: light-dark(
-    color-mix(in oklch, #fff, hsl(45 80% 50%) 2%),
+    color-mix(in oklch, #fff, hsl(45 80% 50%) 1%),
     hsl(210 10% 10%)
   );
   font-family: var(--font-sans);
