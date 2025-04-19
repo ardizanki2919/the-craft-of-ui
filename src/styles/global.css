@@ -103,7 +103,7 @@ body::before {
   --size: 40px;
   --line: color-mix(in hsl, canvasText, transparent 90%);
   content: "";
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   position: fixed;
   background:
