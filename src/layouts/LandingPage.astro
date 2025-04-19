@@ -66,7 +66,7 @@ const ogImageUrl = "";
         >
       </a>
       <nav class="flex gap-x-4 items-center">
-        <a href="https://newsletter.craftofui.com" target="_blank">Blog</a>
+        <a href="https://craftofui.substack.com/" target="_blank">Blog</a>
         <a
           class={clsx(
             "rounded-md bg-linear-180 from-white/10 bg-red-500 px-4 py-1 text-gray-100 relative",
@@ -88,15 +88,14 @@ const ogImageUrl = "";
     </div>
     <!-- main content that's masked off -->
     <div
-      data-content
       class={clsx(
         "[--start:var(--header-height)] lg:[--start:0] [--end:calc(2*var(--header-height))] lg:[--end:var(--header-height)]",
-        "fixed inset-0 overflow-auto pb-[calc(var(--header-height)*1)]",
+        "fixed inset-0 overflow-auto pb-[calc(var(--header-height)*1)] min-h-screen mask-content",
       )}
     >
       <div
         class={clsx(
-          "w-[var(--content)] max-w-[calc(100vw-(2*var(--gutter)))] mx-auto min-h-[100dvh]",
+          "w-[var(--content)] max-w-[calc(100vw-(2*var(--gutter)))] mx-auto",
           "pt-[calc(2*var(--header-height))] pb-[var(--header-height)]",
         )}
       >

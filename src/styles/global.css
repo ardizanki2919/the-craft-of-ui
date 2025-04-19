@@ -1,36 +1,17 @@
 /* @import "normalize.css"; */
 @import "tailwindcss";
 
-:root {
+@theme {
   --header-height: 80px;
   --content: 600px;
   --gutter: 1.5rem;
-
   --font-size-min: 14;
   --font-size-max: 20;
   --font-ratio-min: 1.2;
   --font-ratio-max: 1.33;
   --font-width-min: 375;
   --font-width-max: 1500;
-}
-
-@theme {
   --breakpoint-lg: 968px;
-}
-
-[data-content] {
-  mask-image:
-    linear-gradient(
-      #0000 var(--start),
-      #fff var(--end) calc(100% - var(--header-height)),
-      #0000
-    ),
-    linear-gradient(#fff 0 100%);
-  mask-position:
-    0% 50%,
-    calc(100vw - var(--gutter)) 0;
-  mask-size: calc(100vw - var(--gutter)) 100%;
-  mask-repeat: no-repeat;
 }
 
 :where(a, button):focus-visible {
@@ -53,7 +34,6 @@ html {
     scroll-behavior: smooth;
   }
 }
-
 [data-theme="light"] {
   color-scheme: light only;
 }
@@ -82,6 +62,31 @@ html {
   );
   font-size: var(--fluid-type);
 }
+.mask-content {
+  mask-image:
+    linear-gradient(
+      #0000 var(--start),
+      #fff var(--end) calc(100% - var(--header-height)),
+      #0000
+    ),
+    linear-gradient(#fff 0 100%);
+  mask-position:
+    0 50%,
+    calc(100vw - var(--gutter)) 0;
+  mask-size: calc(100vw - var(--gutter)) 100%;
+  mask-repeat: no-repeat;
+}
+/* linear-gradient(
+      #0000 var(--start),
+      #fff var(--end) calc(100% - var(--header-height)),
+      #0000
+    ),
+    linear-gradient(#fff 0 100%);
+  mask-position:
+    0% 50%,
+    calc(100vw - var(--gutter)) 0;
+  mask-size: calc(100vw - var(--gutter)) 100%;
+  mask-repeat: no-repeat; */
 
 *,
 *:after,

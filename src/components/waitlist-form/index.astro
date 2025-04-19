@@ -34,7 +34,6 @@ const { id } = Astro.props;
         id={`${id}-email`}
         type="email"
         placeholder="Email"
-        required
       />
       <button
         class={clsx(
@@ -60,9 +59,17 @@ const { id } = Astro.props;
 <script>
   const forms = document.querySelectorAll("form");
   for (const form of forms) {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      console.info("submmited");
+      // console.info("submmited");
+      // fetch("/api/hello");
+      const formData = new FormData(form as HTMLFormElement);
+      const response = await fetch("/api/feedback", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      console.info({ data });
     });
   }
 </script>
