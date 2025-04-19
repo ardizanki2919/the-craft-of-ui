@@ -18,10 +18,42 @@
   --breakpoint-lg: 968px;
 }
 
+[data-content] {
+  mask-image:
+    linear-gradient(
+      #0000 var(--start),
+      #fff var(--end) calc(100% - var(--header-height)),
+      #0000
+    ),
+    linear-gradient(#fff 0 100%);
+  mask-position:
+    0% 50%,
+    calc(100vw - var(--gutter)) 0;
+  mask-size: calc(100vw - var(--gutter)) 100%;
+  mask-repeat: no-repeat;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--color-red-400);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-red-400);
+  color: #fff;
+}
+
 html {
   color-scheme: light dark;
   scrollbar-color: light-dark(var(--color-red-300), var(--color-red-500)) #0000;
   scrollbar-width: thin;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html,
+  body,
+  .overflow-auto {
+    scroll-behavior: smooth;
+  }
 }
 
 [data-theme="light"] {
@@ -62,7 +94,7 @@ html {
 body {
   color: color-mix(in oklch, canvasText, canvas 40%);
   background: light-dark(
-    color-mix(in oklch, #fff, hsl(45 80% 50%) 5%),
+    color-mix(in oklch, #fff, hsl(45 80% 50%) 2%),
     hsl(210 10% 10%)
   );
   font-family: var(--font-sans);
@@ -86,4 +118,72 @@ body::before {
   transform-style: flat;
   pointer-events: none;
   z-index: -1;
+}
+
+@layer signature {
+  .sig {
+    --duration: 1.4;
+    --delay: 0.2;
+    --base-delay: calc((var(--duration) + var(--delay)));
+    --natty-delay: 0.973125;
+    width: 160px;
+    rotate: 10deg;
+  }
+  path {
+    --end: 1.025;
+    stroke-dasharray: var(--end);
+    stroke-dashoffset: var(--end);
+    animation: draw calc(var(--path-speed) * 1s)
+      calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
+      forwards;
+  }
+
+  :is(.eye, .nose) {
+    fill: hsl(0 0% 0% / 0);
+    animation:
+      draw calc(var(--path-speed) * 1s)
+        calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
+        forwards,
+      fill 0.5s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
+        forwards;
+  }
+
+  .eye {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation:
+      draw calc(var(--path-speed) * 1s)
+        calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
+        forwards,
+      fill 0.5s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
+        forwards,
+      blink 6s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
+        infinite;
+  }
+
+  @keyframes fill {
+    to {
+      fill: currentColor;
+    }
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    46%,
+    48%,
+    50%,
+    100% {
+      transform: scaleY(1);
+    }
+    47%,
+    49% {
+      transform: scaleY(0.1);
+    }
+  }
 }

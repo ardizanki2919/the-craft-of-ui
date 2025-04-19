@@ -1,12 +1,62 @@
 ---
-
+import { clsx } from "clsx";
+const { id } = Astro.props;
 ---
 
-<form>
-  <input type="text" placeholder="preferred name" />
-  <input type="email" placeholder="email" required />
-  <button type="submit">Join Waitlist</button>
-</form>
+<div class="mt-20 mb-24 scroll-mt-[calc(var(--header-height)*2)]" id={`${id}`}>
+  <p class="mb-4 text-balance">
+    You want to build exceptional user interfaces, I want to empower you to do
+    so.<br />
+    <strong class="font-bold text-[canvasText] text-balance"
+      >Join the waitlist to learn more and get course launch updates.</strong
+    >
+  </p>
+  <form>
+    <div class="flex flex-wrap items-center justify-end gap-2 mb-4">
+      <label class="sr-only" for={`${id}-name`}>Preferred name</label>
+      <input
+        class={clsx(
+          "rounded-md border border-gray-300 h-9 text-sm px-4 flex-1 outline-none",
+          "focus-visible:border-red-400",
+          "placeholder:text-gray-400 text-[canvasText]",
+        )}
+        id={`${id}-name`}
+        type="text"
+        placeholder="Your name [optional]"
+      />
+      <label class="sr-only" for={`${id}-email`}>Email Address</label>
+      <input
+        class={clsx(
+          "rounded-md border border-gray-300 h-9 text-sm px-4 flex-1 outline-none",
+          "focus-visible:border-red-400",
+          "placeholder:text-gray-400 text-[canvasText]",
+        )}
+        id={`${id}-email`}
+        type="email"
+        placeholder="Email"
+        required
+      />
+      <button
+        class={clsx(
+          "rounded-md bg-linear-180 from-white/10 bg-red-500 px-4 py-1 text-gray-100 relative",
+          "shadow-inner shadow-gray-900/20 motion-safe:transition-all",
+          "active:scale-[0.98] cursor-pointer h-9 grid place-items-center",
+          "after:content-[''] after:absolute after:inset-0 after:rounded-md",
+          "after:bg-linear-180 after:from-white/40 after:to-white/10",
+          "after:opacity-70 hover:after:opacity-100 after:motion-safe:transition-all",
+        )}
+        type="submit"
+      >
+        <span
+          class="text-shadow-lg [text-shadow:0_1px_1px_var(--color-red-800)]"
+        >
+          Join
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
+
 <script>
   const forms = document.querySelectorAll("form");
   for (const form of forms) {
