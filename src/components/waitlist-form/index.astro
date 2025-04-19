@@ -21,6 +21,7 @@ const { id } = Astro.props;
           "placeholder:text-gray-400 text-[canvasText]",
         )}
         id={`${id}-name`}
+        name="name"
         type="text"
         placeholder="Your name [optional]"
       />
@@ -32,8 +33,10 @@ const { id } = Astro.props;
           "placeholder:text-gray-400 text-[canvasText]",
         )}
         id={`${id}-email`}
+        name="email"
         type="email"
         placeholder="Email"
+        required
       />
       <button
         class={clsx(
