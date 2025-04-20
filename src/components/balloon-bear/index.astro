@@ -7,25 +7,26 @@ import { clsx } from "clsx";
   class={clsx(
     "w-[600px] max-w-[calc(100vw-(2*var(--gutter)))]",
     "fixed inset-0 mx-auto pointer-events-none overflow-hidden",
-    "[container-type:inline-size]",
+    "[container-type:inline-size] z-100",
     // bear
-    "motion-safe:[&>div]:animate-[float_var(--duration,20s)_2s_both_linear]",
+    "[&>div]:animate-[float_var(--duration,20s)_2s_both_linear]",
   )}
 >
 </div>
 <div
   class={clsx(
     "w-20 drop-shadow-lg absolute bottom-0 left-[calc((100cqi-4rem)*var(--x,0))]",
-    "translate-y-full",
+    "translate-y-full hidden",
   )}
   data-bear-template
 >
   <button
     class={clsx(
-      "absolute w-[72%] left-[4%] top-[1%] aspect-square bg-blue-400 opacity-50",
+      "absolute w-[72%] left-[4%] top-[1%] aspect-square",
       "cursor-pointer pointer-events-auto",
     )}></button>
   <svg
+    class="overflow-visible"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -69,6 +70,7 @@ import { clsx } from "clsx";
       d="M417.156 664.094c2.526 22.882-6.427 46.109-20.821 60.503l-43.655-43.655c9.604-9.727 9.566-25.397-.114-35.077l-13.194-13.194c-9.68-9.68-25.35-9.718-35.077-.114l-43.44-43.44c14.394-14.394 37.621-23.347 60.503-20.821 22.881 2.525 45.829 14.037 63.795 32.003s29.478 40.914 32.003 63.795Z"
       clip-rule="evenodd"></path>
     <ellipse
+      class="animate-[blink_8s_infinite] [transform-box:fill-box] rotate-45 origin-center"
       cx="349.096"
       cy="714.26"
       fill="#000"
@@ -76,6 +78,7 @@ import { clsx } from "clsx";
       ry="8.0793"
       transform="rotate(45 349.096 714.26)"></ellipse>
     <ellipse
+      class="animate-[blink_8s_infinite] [transform-box:fill-box] rotate-45 origin-center"
       cx="272.202"
       cy="637.366"
       fill="#000"
@@ -97,14 +100,24 @@ import { clsx } from "clsx";
       stroke-linecap="round"
       stroke-width="5"
       d="m193.5 732.5-5-376"></path>
-    <circle
-      fill-opacity=".5"
-      cx="188.5"
-      cy="184.5"
-      r="169"
-      fill="var(--accent,red)"
-      stroke="#000"
-      stroke-width="6"></circle>
+    <g class="balloon [transform-box:fill-box] origin-center">
+      <circle
+        fill-opacity=".5"
+        cx="188.5"
+        cy="184.5"
+        r="169"
+        fill="var(--accent,red)"
+        stroke="#000"
+        stroke-width="6"></circle>
+      <path
+        stroke="#fff"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-opacity=".75"
+        stroke-width="30"
+        d="M151.119 53.7383A135.997 135.997 0 0 0 83.5092 98.054a135.9978 135.9978 0 0 0-30.5146 74.858"
+      ></path>
+    </g>
     <path
       fill="var(--accent,red)"
       fill-opacity=".5"
@@ -117,13 +130,5 @@ import { clsx } from "clsx";
       stroke-linecap="round"
       stroke-width="6"
       d="m147 668 62-42"></path>
-    <path
-      stroke="#fff"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-opacity=".75"
-      stroke-width="30"
-      d="M151.119 53.7383A135.997 135.997 0 0 0 83.5092 98.054a135.9978 135.9978 0 0 0-30.5146 74.858"
-    ></path>
   </svg>
 </div>

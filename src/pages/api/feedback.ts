@@ -35,9 +35,8 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const result = await res.json();
-    await new Promise((res) => setTimeout(res, 2000));
+    await new Promise((res) => setTimeout(res, Math.random() * 1_000));
 
-    // if (true) {
     if (!res.ok) {
       console.error("Kit API error:", result);
       return new Response(
@@ -46,7 +45,6 @@ export const POST: APIRoute = async ({ request }) => {
           error: result,
         }),
         { status: res.status || 502 },
-        // { status: 500 },
       );
     }
 

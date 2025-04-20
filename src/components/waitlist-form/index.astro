@@ -231,21 +231,58 @@ const { id } = Astro.props;
         submit.ariaLabel = "Done";
         formElement.inert = true;
         // fire a bear
-        const successBear = document
-          .querySelector("[data-bear-template]")
-          ?.cloneNode(true) as HTMLElement;
-        if (successBear) {
-          successBear.style.setProperty(
-            "--accent",
-            `hsl(${Math.random() * 359} 90% 80%)`,
-          );
-          successBear.style.setProperty("--x", Math.random().toFixed(2));
-          successBear.style.setProperty(
-            "--duration",
-            `${(10 + Math.random() * 20).toFixed(2)}s`,
-          );
-          successBear.classList.remove("hidden");
-          document.querySelector("[data-bear-cave]")?.append(successBear);
+        if (
+          window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+        ) {
+          const successBear = document
+            .querySelector("[data-bear-template]")
+            ?.cloneNode(true) as HTMLElement;
+          if (successBear) {
+            successBear.style.setProperty(
+              "--accent",
+              `hsl(${Math.random() * 359} 90% 80%)`,
+            );
+            successBear.style.setProperty("--x", Math.random().toFixed(2));
+            successBear.style.setProperty(
+              "--duration",
+              `${(10 + Math.random() * 20).toFixed(2)}s`,
+            );
+            successBear.classList.remove("hidden");
+            document.querySelector("[data-bear-cave]")?.append(successBear);
+
+            const trigger = successBear.querySelector("button") as HTMLElement;
+            const balloon = successBear.querySelector(
+              ".balloon",
+            ) as HTMLElement;
+            trigger.addEventListener("click", async () => {
+              const pop = new Audio("/audio/pop.mp3");
+              pop.play();
+              await Promise.all([
+                balloon.animate(
+                  {
+                    scale: [2],
+                    opacity: [0],
+                  },
+                  {
+                    fill: "forwards",
+                    duration: 75,
+                    easing: "ease-out",
+                  },
+                ).finished,
+                successBear.animate(
+                  {
+                    translate: ["0 100%"],
+                  },
+                  {
+                    composite: "replace",
+                    duration: 200,
+                    easing: "linear",
+                  },
+                ).finished,
+              ]);
+              successBear.remove();
+            });
+          }
         }
       } else {
         // if it doesn't, enable the control again and communicate it
