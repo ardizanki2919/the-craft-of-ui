@@ -76,17 +76,31 @@ html {
   mask-size: calc(100vw - var(--gutter)) 100%;
   mask-repeat: no-repeat;
 }
-/* linear-gradient(
-      #0000 var(--start),
-      #fff var(--end) calc(100% - var(--header-height)),
-      #0000
-    ),
-    linear-gradient(#fff 0 100%);
-  mask-position:
-    0% 50%,
-    calc(100vw - var(--gutter)) 0;
-  mask-size: calc(100vw - var(--gutter)) 100%;
-  mask-repeat: no-repeat; */
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-status="success"] {
+    mask-image: linear-gradient(90deg, #fff 0 calc(50% - 3rem), #0000 50%);
+  }
+  [data-waitlist-content][inert] {
+    mask-image: linear-gradient(90deg, #0000 0 calc(50% + 3rem), #fff 50%);
+  }
+  [data-status="success"],
+  [data-waitlist-content][inert] {
+    mask-size: calc(200% + 10rem) 100%;
+    mask-position: 100% 0;
+    animation: reveal 0.5s 0.625s both ease-out;
+  }
+  @keyframes reveal {
+    to {
+      mask-position: 0 0;
+    }
+  }
+  @keyframes float {
+    to {
+      translate: 0 calc(-100% + -100vh);
+    }
+  }
+}
 
 *,
 *:after,
@@ -131,37 +145,36 @@ body::before {
     --natty-delay: 0.973125;
     width: 160px;
     rotate: 10deg;
-  }
-  path {
-    --end: 1.025;
-    stroke-dasharray: var(--end);
-    stroke-dashoffset: var(--end);
-    animation: draw calc(var(--path-speed) * 1s)
-      calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
-      forwards;
-  }
-
-  :is(.eye, .nose) {
-    fill: hsl(0 0% 0% / 0);
-    animation:
-      draw calc(var(--path-speed) * 1s)
+    path {
+      --end: 1.025;
+      stroke-dasharray: var(--end);
+      stroke-dashoffset: var(--end);
+      animation: draw calc(var(--path-speed) * 1s)
         calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
-        forwards,
-      fill 0.5s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
         forwards;
-  }
+    }
 
-  .eye {
-    transform-box: fill-box;
-    transform-origin: 50% 50%;
-    animation:
-      draw calc(var(--path-speed) * 1s)
-        calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
-        forwards,
-      fill 0.5s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
-        forwards,
-      blink 6s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
-        infinite;
+    :is(.eye, .nose) {
+      fill: hsl(0 0% 0% / 0);
+      animation:
+        draw calc(var(--path-speed) * 1s)
+          calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
+          forwards,
+        fill 0.5s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
+          forwards;
+    }
+    .eye {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation:
+        draw calc(var(--path-speed) * 1s)
+          calc((var(--base-delay) * 1s) + var(--path-delay, 0) * 1s) ease-in
+          forwards,
+        fill 0.5s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
+          forwards,
+        blink 6s calc((var(--base-delay) * 1s) + var(--natty-delay, 0) * 1s)
+          infinite;
+    }
   }
 
   @keyframes fill {

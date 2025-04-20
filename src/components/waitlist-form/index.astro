@@ -3,76 +3,264 @@ import { clsx } from "clsx";
 const { id } = Astro.props;
 ---
 
-<div class="mt-20 mb-24 scroll-mt-[calc(var(--header-height)*2)]" id={`${id}`}>
-  <p class="mb-4 text-balance">
-    You want to build exceptional user interfaces, I want to empower you to do
-    so.<br />
-    <strong class="font-bold text-[canvasText] text-balance"
-      >Join the waitlist to learn more and get course launch updates.</strong
-    >
-  </p>
-  <form>
-    <div class="flex flex-wrap items-center justify-end gap-2 mb-4">
-      <label class="sr-only" for={`${id}-name`}>Preferred name</label>
-      <input
-        class={clsx(
-          "rounded-md border border-gray-300 h-9 px-4 flex-1 outline-none",
-          "focus-visible:border-red-400 placeholder:text-sm",
-          "placeholder:text-gray-400 text-[canvasText]",
-        )}
-        id={`${id}-name`}
-        name="name"
-        type="text"
-        placeholder="Your name [optional]"
-      />
-      <label class="sr-only" for={`${id}-email`}>Email Address</label>
-      <input
-        class={clsx(
-          "rounded-md border border-gray-300 h-9 px-4 flex-1 outline-none",
-          "focus-visible:border-red-400 placeholder:text-sm",
-          "placeholder:text-gray-400 text-[canvasText]",
-        )}
-        id={`${id}-email`}
-        name="email"
-        type="email"
-        placeholder="Email"
-        required
-      />
-      <button
-        class={clsx(
-          "rounded-md bg-linear-180 from-white/10 bg-red-500 px-4 py-1 text-gray-100 relative",
-          "shadow-inner shadow-gray-900/20 motion-safe:transition-all",
-          "active:scale-[0.98] cursor-pointer h-9 grid place-items-center",
-          "after:content-[''] after:absolute after:inset-0 after:rounded-md",
-          "after:bg-linear-180 after:from-white/40 after:to-white/10",
-          "after:opacity-70 hover:after:opacity-100 after:motion-safe:transition-all",
-        )}
-        type="submit"
+<div
+  data-waitlist-form
+  class="mt-20 mb-24 scroll-mt-[calc(var(--header-height)*2)] relative"
+  id={`${id}`}
+>
+  <div class="relative [[inert]_svg]:animate-none" data-waitlist-content>
+    <p class="mb-4 text-balance">
+      You want to build exceptional user interfaces, I want to empower you to do
+      so.<br />
+      <strong class="font-bold text-[canvasText] text-balance"
+        >Join the waitlist to learn more and get course launch updates.</strong
       >
-        <span
-          class="text-shadow-lg [text-shadow:0_1px_1px_var(--color-red-800)]"
+    </p>
+    <form>
+      <div
+        data-controls
+        class="flex flex-wrap items-center justify-end gap-2 mb-4"
+      >
+        <label class="sr-only" for={`${id}-name`}>Preferred name</label>
+        <input
+          autocomplete="off"
+          class={clsx(
+            "rounded-md border border-gray-300 h-9 px-4 flex-1 outline-none",
+            "focus-visible:border-red-400 placeholder:text-sm",
+            "placeholder:text-gray-400 text-[canvasText]",
+          )}
+          id={`${id}-name`}
+          name="name"
+          type="text"
+          placeholder="Your name [optional]"
+        />
+        <label class="sr-only" for={`${id}-email`}>Email Address</label>
+        <input
+          autocomplete="off"
+          class={clsx(
+            "rounded-md border border-gray-300 h-9 px-4 flex-1 outline-none",
+            "focus-visible:border-red-400 placeholder:text-sm",
+            "placeholder:text-gray-400 text-[canvasText]",
+          )}
+          id={`${id}-email`}
+          name="email"
+          type="email"
+          placeholder="Email"
+          required
+        />
+        <button
+          aria-label="Join"
+          class={clsx(
+            "group [[aria-label='Done']]:bg-green-600",
+            "rounded-md bg-linear-180 from-white/10 bg-red-500 text-gray-100 relative",
+            "shadow-inner shadow-gray-900/20 motion-safe:transition-all",
+            "active:scale-[0.98] cursor-pointer h-9 grid place-items-center",
+            "after:content-[''] after:absolute after:inset-0 after:rounded-md",
+            "after:bg-linear-180 after:from-white/40 after:to-white/10",
+            "after:opacity-70 hover:after:opacity-100 after:motion-safe:transition-all",
+          )}
+          type="submit"
         >
-          Join
-        </span>
-      </button>
-    </div>
-  </form>
+          <!-- <span class="h-full w-full"> -->
+          <span
+            class={clsx(
+              "motion-safe:transition-all",
+              "group-[[aria-label='Submitting...']]:translate-x-full",
+              "group-[[aria-label='Done']]:translate-x-[200%]",
+              "relative h-full w-full",
+            )}
+          >
+            <span
+              class={clsx(
+                "px-4 py-1 h-full grid place-items-center text-shadow-lg [text-shadow:0_1px_1px_var(--color-red-800)]",
+                "group-[[aria-label='Submitting...']]:opacity-0 h-full",
+              )}
+            >
+              Join
+            </span>
+            <span
+              class={clsx(
+                "absolute w-full h-full inset-0 -translate-x-full grid place-items-center",
+                "motion-safe:transition-opacity opacity-0",
+                "group-[[aria-label='Submitting...']]:opacity-100",
+              )}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                stroke="currentColor"
+                class={clsx(
+                  "animate-spin [animation-timing-function:steps(8)] [animation-play-state:paused] overflow-visible",
+                  "motion-safe:group-[[aria-label='Submitting...']]:[animation-play-state:running] w-6 aspect-square",
+                )}
+              >
+                <path
+                  d="M12 18V22"
+                  stroke-width="2"
+                  stroke-opacity="1"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M19.0703 19.0703L16.2419 16.2419"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-opacity="0.875"></path>
+                <path
+                  d="M6 12L2 12"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-opacity="0.25"></path>
+                <path
+                  d="M12 2V6"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-opacity="0.5"></path>
+                <path
+                  d="M22 12L18 12"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-opacity="0.75"></path>
+                <path
+                  d="M7.75781 7.75781L4.92939 4.92939"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-opacity="0.375"></path>
+                <path
+                  d="M16.2422 7.75781L19.0706 4.92939"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-opacity="0.625"></path>
+                <path
+                  d="M4.92969 19.0703L7.75811 16.2419"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-opacity="0.125"></path>
+              </svg>
+            </span>
+            <span
+              class={clsx(
+                "absolute w-full h-full inset-0 -translate-x-[200%] grid place-items-center",
+                "motion-safe:transition-opacity opacity-0",
+                "group-[[aria-label='Done']]:opacity-100",
+              )}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg
+              >
+            </span>
+          </span>
+          <!-- </span> -->
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- stores 3 states, progress, error, success -->
+  <div
+    class={clsx(
+      "absolute top-full left-0 right-0 text-sm text-center outline-none",
+      "data-[status=error]:text-red-400 [&_p]:text-balance",
+      "motion-safe:data-[status=error]:transition-all opacity-100 blur-none",
+      "not-data-[status=success]:opacity-0 data-[status=error]:opacity-100",
+      "not-data-[status=success]:translate-y-4 data-[status=error]:translate-y-2",
+      "not-data-[status=success]:blur-sm data-[status=error]:blur-none",
+      "data-[status=success]:inset-0 data-[status=success]:grid data-[status=success]:place-items-center",
+      "data-[status=success]:[&_p]:text-green-800 data-[status=success]:[&_p]:bg-green-50",
+      "data-[status=success]:[&_p]:border data-[status=success]:[&_p]:border-green-800",
+      "data-[status=success]:[&_p]:rounded-md data-[status=success]:[&_p]:p-2",
+    )}
+    role="status"
+  >
+  </div>
 </div>
 
 <script>
-  const forms = document.querySelectorAll("form");
+  const forms = document.querySelectorAll("[data-waitlist-form]");
+  const contents = document.querySelectorAll("[data-waitlist-content]");
+  const statuses = document.querySelectorAll(
+    "[data-waitlist-form] [role=status]",
+  );
+
   for (const form of forms) {
+    const submit = form.querySelector("[type=submit]") as HTMLElement;
+    const currentStatus = form.querySelector("[role=status]") as HTMLElement;
+    const formElement = form.querySelector("form") as HTMLElement;
+    // submit the form
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      // console.info("submmited");
-      // fetch("/api/hello");
-      const formData = new FormData(form as HTMLFormElement);
+      // update the control
+      submit.ariaLabel = "Submitting...";
+      submit.ariaDisabled = "true";
+      // this one isn't shown but communicates what is happening
+      currentStatus.classList.add("sr-only");
+      currentStatus.innerHTML = "Submitting...";
+      // send form data to the API
+      const formData = new FormData(formElement as HTMLFormElement);
       const response = await fetch("/api/feedback", {
         method: "POST",
         body: formData,
       });
-      const data = await response.json();
-      console.info({ data });
+      // if the form submit succesfully, let the user know
+      if (response.ok) {
+        const data = await response.json();
+        console.info({ response, data });
+        for (const status of statuses) {
+          status.classList.remove("sr-only");
+          (status as HTMLElement).dataset.status = "success";
+          // don't announce all of them
+          if (status !== currentStatus) status.removeAttribute("role");
+          status.innerHTML = `
+            <p>
+              <strong class="font-[500]">Thanks${data.name ? ` ${data.name}` : ""}!</strong><br />
+              You’re on the waitlist. Please check your email to confirm your spot.
+            </p>
+          `.trim();
+        }
+        for (const content of contents) {
+          (content as HTMLElement).inert = true;
+        }
+        currentStatus.tabIndex = -1;
+        currentStatus.focus();
+        submit.ariaLabel = "Done";
+        formElement.inert = true;
+        // fire a bear
+        const successBear = document
+          .querySelector("[data-bear-template]")
+          ?.cloneNode(true) as HTMLElement;
+        if (successBear) {
+          successBear.style.setProperty(
+            "--accent",
+            `hsl(${Math.random() * 359} 90% 80%)`,
+          );
+          successBear.style.setProperty("--x", Math.random().toFixed(2));
+          successBear.style.setProperty(
+            "--duration",
+            `${(10 + Math.random() * 20).toFixed(2)}s`,
+          );
+          successBear.classList.remove("hidden");
+          document.querySelector("[data-bear-cave]")?.append(successBear);
+        }
+      } else {
+        // if it doesn't, enable the control again and communicate it
+        currentStatus.innerHTML = `
+          <p>
+            <strong class="font-[500]">Something went wrong on our end.</strong><br/>
+            Your spot might not be saved — try again or refresh the page.
+          </p>
+        `.trim();
+        // show the status
+        currentStatus.classList.remove("sr-only");
+        currentStatus.dataset.status = "error";
+        submit.ariaLabel = "Join";
+        submit.ariaDisabled = "false";
+      }
     });
   }
 </script>

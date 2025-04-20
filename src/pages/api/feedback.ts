@@ -2,10 +2,7 @@ export const prerender = false; // Not needed in 'server' mode
 import { getSecret } from "astro:env/server";
 import type { APIRoute } from "astro";
 
-// Unlock the art and science of interface development. This isn’t just about pushing pixels or following documentation — it’s about mastering the tools, understanding the nuances, and shaping experiences with intention.
-
 const KIT_KEY = getSecret("KIT_KEY");
-// const KIT_SECRET = getSecret("KIT_SECRET");
 const KIT_FORM = "4960194";
 const URL = `https://api.convertkit.com/v3/forms/${KIT_FORM}/subscribe`;
 
@@ -16,7 +13,7 @@ export const POST: APIRoute = async ({ request }) => {
     const email = formData.get("email")?.toString().trim();
 
     // Validate inputs
-    if (!name || !email) {
+    if (!email) {
       return new Response(
         JSON.stringify({ message: "Missing required fields: name or email." }),
         { status: 400 },
@@ -38,7 +35,9 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const result = await res.json();
+    await new Promise((res) => setTimeout(res, 2000));
 
+    // if (true) {
     if (!res.ok) {
       console.error("Kit API error:", result);
       return new Response(
@@ -47,11 +46,12 @@ export const POST: APIRoute = async ({ request }) => {
           error: result,
         }),
         { status: res.status || 502 },
+        // { status: 500 },
       );
     }
 
     console.info("Kit API success:", result);
-    return new Response(JSON.stringify({ message: "Success!" }), {
+    return new Response(JSON.stringify({ message: "Success!", name }), {
       status: 200,
     });
   } catch (err) {

@@ -2,9 +2,9 @@
 import { clsx } from "clsx";
 import { Font, Image } from "astro:assets";
 import WaitlistForm from "@components/waitlist-form/index.astro";
+import BalloonBear from "@components/balloon-bear/index.astro";
 import headshot from "../assets/headshot.jpeg";
 import "../styles/global.css";
-
 const title = "The Craft of UI";
 const description =
   "Master crafting exceptional user interfaces with Jhey Tompkins";
@@ -46,6 +46,8 @@ const ogImageUrl = "";
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@jh3yy" />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-serif" preload />
   </head>
   <body class="font-sans">
     <div
@@ -134,7 +136,7 @@ const ogImageUrl = "";
           <slot />
           <div class="relative text-[canvasText] flex justify-end">
             <svg
-              class="sig"
+              class="sig -translate-x-8"
               viewBox="0 0 271 209"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -207,5 +209,6 @@ const ogImageUrl = "";
         </footer>
       </div>
     </div>
+    <BalloonBear />
   </body>
 </html>
