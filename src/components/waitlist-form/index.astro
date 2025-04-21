@@ -51,7 +51,7 @@ const { id } = Astro.props;
         <button
           aria-label="Join"
           class={clsx(
-            "group [[aria-label='Done']]:bg-green-600",
+            "group [[aria-label='Done']]:bg-green-600 overflow-hidden",
             "rounded-md bg-linear-180 from-white/10 bg-red-500 text-gray-100 relative",
             "shadow-inner shadow-gray-900/20 motion-safe:transition-all",
             "active:scale-[0.98] cursor-pointer h-9 grid place-items-center",
@@ -249,7 +249,7 @@ const { id } = Astro.props;
               "--duration",
               `${(10 + Math.random() * 20).toFixed(2)}s`,
             );
-            successBear.classList.remove("hidden");
+            successBear.classList.remove("sr-only");
             document.querySelector("[data-bear-cave]")?.append(successBear);
 
             const trigger = successBear.querySelector("button") as HTMLElement;
