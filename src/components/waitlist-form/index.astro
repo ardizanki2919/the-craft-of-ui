@@ -172,9 +172,11 @@ const { id } = Astro.props;
       "not-data-[status=success]:translate-y-4 data-[status=error]:translate-y-2",
       "not-data-[status=success]:blur-sm data-[status=error]:blur-none",
       "data-[status=success]:inset-0 data-[status=success]:grid data-[status=success]:place-items-center",
-      "data-[status=success]:[&_p]:text-green-800 data-[status=success]:[&_p]:bg-green-50",
-      "data-[status=success]:[&_p]:border data-[status=success]:[&_p]:border-green-800",
       "data-[status=success]:[&_p]:rounded-md data-[status=success]:[&_p]:p-2",
+      "data-[status=success]:[&_p]:text-green-800 data-[status=success]:[&_p]:bg-green-200/10",
+      "data-[status=success]:[&_p]:border data-[status=success]:[&_p]:border-green-800",
+      "dark:data-[status=success]:[&_p]:text-green-200 dark:data-[status=success]:[&_p]:bg-green-200/10",
+      "dark:data-[status=success]:[&_p]:border-green-200",
     )}
     role="status"
   >
