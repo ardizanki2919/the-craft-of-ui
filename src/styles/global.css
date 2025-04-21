@@ -109,9 +109,9 @@ html {
 }
 
 body {
-  color: color-mix(in oklch, canvasText, canvas 40%);
+  color: color-mix(in hsl, canvasText, canvas 40%);
   background: light-dark(
-    color-mix(in oklch, #fff, hsl(45 80% 50%) 1%),
+    color-mix(in hsl, #fff, hsl(45 80% 50%) 1%),
     hsl(210 10% 10%)
   );
   font-family: var(--font-sans);

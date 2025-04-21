@@ -20,10 +20,11 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    console.info({ n: name === "" ? undefined : name });
     const data = {
       api_key: KIT_KEY,
       email,
-      first_name: name,
+      first_name: name === "" ? undefined : name,
     };
 
     const res = await fetch(URL, {
