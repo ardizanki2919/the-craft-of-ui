@@ -1,5 +1,5 @@
 ---
-import { inject } from "@vercel/analytics";
+import Analytics from "@vercel/analytics/astro";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 import { clsx } from "clsx";
 import { Font, Image } from "astro:assets";
@@ -54,6 +54,7 @@ inject();
     <meta name="twitter:creator" content="@jh3yy" />
     <Font cssVariable="--font-sans" preload />
     <Font cssVariable="--font-serif" preload />
+    <Analytics />
   </head>
   <body class="font-sans min-h-screen">
     <div
