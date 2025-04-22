@@ -19,6 +19,10 @@
   outline-offset: 2px;
 }
 
+strong {
+  @apply font-[600];
+}
+
 ::selection {
   background: var(--color-red-400);
   color: #fff;
@@ -63,8 +67,7 @@ html {
   font-size: var(--fluid-type);
 }
 .mask-content {
-  mask-image:
-    linear-gradient(
+  mask-image: linear-gradient(
       #0000 var(--start),
       #fff var(--end) calc(100% - var(--header-height)),
       #0000
