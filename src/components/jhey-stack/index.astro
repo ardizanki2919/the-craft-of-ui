@@ -1,8 +1,20 @@
 ---
+import { clsx } from "clsx";
 import { Image } from "astro:assets";
 import headshot from "@assets/headshot.jpeg";
+import miami from "@assets/shift-miami.jpg";
+import gde from "@assets/gde-summit.jpg";
+import desk from "@assets/desk-lean.jpeg";
 ---
 
-<div class="grid float-left w-[clamp(120px,30%,300px)] mr-4 mb-4 mt-2">
-  <Image src={headshot} alt="Jhey on stage" />
+<div
+  class={clsx(
+    "grid float-left w-[clamp(120px,30%,300px)] mr-4 mb-4 mt-2 bg-gray-500",
+    "[&_img]:[grid-area:1/1] photo-stack",
+  )}
+>
+  <Image src={gde} alt="Jhey on stage at Smashing Conf SF" />
+  <Image src={miami} alt="Jhey on stage at Infobip Shift Miami" />
+  <Image src={desk} alt="Jhey on stage at the GDE Summit Berlin" />
+  <Image src={headshot} alt="Jhey on stage at All Day Hey" />
 </div>
