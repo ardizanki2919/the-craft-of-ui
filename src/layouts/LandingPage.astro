@@ -61,20 +61,31 @@ injectSpeedInsights();
     >
       <a aria-label="Home" href="/">
         <svg
-          class="w-7 opacity-60 hover:opacity-100"
-          xmlns="http://www.w3.org/2000/svg"
+          class="w-7 text-[canvasText] opacity-50 hover:opacity-100"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="canvasText"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="M6 3h12l4 6-10 13L2 9Z"></path><path
-            d="M11 3 8 9l4 13 4-13-3-6"></path><path d="M2 9h20"></path></svg
+          xmlns="http://www.w3.org/2000/svg"
         >
+          <path
+            d="m3.98448 20.5882-1.17645 1.6174m-.22047-1.3969 1.61739 1.1764M22.144.730378 20.6832 2.09646m.0474-1.413417 1.366 1.460757"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="m3.90821 18.5526-.99265.1211c.05339.4376.38706.7886.82142.8641l.17123-.9852ZM20.601 4.22249l.6513.75876c.2799-.24025.4048-.61505.325-.97515-.0798-.3601-.3514-.64703-.7065-.74654l-.2698.96293Zm1.0023-.01702c-.011-.55218-.4676-.99089-1.0198-.9799-.5521.01099-.9908.46753-.9798 1.01971l1.9996-.03981Zm-.6556 17.30843-.1713.9852c.2943.0511.596-.0319.8226-.2264.2266-.1945.3544-.4802.3485-.7787l-.9998.0199ZM3.03505 11.3945l-.65137-.7587c-.25369.2178-.38176.5479-.34127.8798l.99264-.1211ZM13.9295 1.31482c-.5318-.14899-1.0837.16133-1.2327.69314-.149.53181.1614 1.08371.6932 1.23271l.5395-1.92585ZM4.55957 19.3113 21.2523 4.98125l-1.3027-1.51753L3.25684 17.7938l1.30273 1.5175ZM19.6037 4.24528l.3442 17.28852 1.9996-.0398-.3442-17.28853-1.9996.03981ZM3.73698 19.5378l17.03942 2.9613.3425-1.9705-17.03947-2.9613-.34245 1.9705Zm-.05056-7.3845L14.3091 3.03414l-1.3027-1.51752L2.38368 10.6358l1.30274 1.5175Zm1.21443 6.2782-.87316-7.1581-1.98528.2422.87315 7.1581 1.98529-.2422ZM20.8708 3.25956l-6.9413-1.94474-.5395 1.92585 6.9412 1.94474.5396-1.92585Z"
+            fill="currentColor"></path>
+          <path
+            d="m15.7227 7.75 4.9996 13.5001M8.13672 14.2656 20.724 21.2521M8.27235 14.3152 6.53303 9.21862M15.751681 7.894673l-4.774359-2.4910727"
+            stroke="currentColor"
+            stroke-width="2"></path>
+        </svg>
       </a>
       <nav class="flex gap-x-4 items-center">
-        <a href="https://craftofui.substack.com/" target="_blank">Blog</a>
+        <a
+          class="[:is(:hover,:focus-visible)]:text-red-400"
+          href="https://craftofui.substack.com/"
+          target="_blank">Blog</a
+        >
         <a
           class={clsx(
             "rounded-md bg-linear-180 from-white/10 bg-red-500 px-4 py-1 text-gray-100 relative",
@@ -137,11 +148,19 @@ injectSpeedInsights();
             exceptional user interfaces with HTML, CSS, and JavaScript
           </p>
         </header>
-        <main class={clsx("[&>p]:mb-8 leading-[1.5] [&_p]:text-md")}>
+        <main
+          class={clsx(
+            "[&>p:not(:has(+ul))]:mb-8 leading-[1.5] [&_p]:text-md",
+            "[&_ul]:list-disc [&_ul]:mb-8 [&_ul]:mt-2 [&_ul]:list-inside",
+            "[&_ul]:flex [&_ul]:flex-col [&_ul]:gap-y-2",
+            "[&_h2]:font-serif [&_h2]:[--font-size-min:20] [&_h2]:[--font-level:1.4] [&_h2]:leading-none",
+            "[&_h2]:mt-20 [&_h2]:mb-4",
+          )}
+        >
           <WaitlistForm id="header" />
           <slot />
           <div class="relative flex flex-col gap-y-4 pl-[0%]">
-            <div class="font-[600]">– Jhey</div>
+            <div class="font-[600]">– Jhey, the Craft of UI</div>
             <svg
               class="sig text-[canvasText]"
               viewBox="0 0 271 209"

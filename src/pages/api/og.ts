@@ -6,5 +6,5 @@ export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);
   const params = url.searchParams;
   const title = params.get("title") ?? "The Craft of UI";
-  return generateOG({ title, subtitle: "Jhey" });
+  return generateOG({ title });
 };
