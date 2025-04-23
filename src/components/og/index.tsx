@@ -155,6 +155,7 @@ const OG = ({ title }: { title: string }) => {
             course from Jhey Tompkins
           </div>
           <img
+            alt=""
             style={{ width: "40px", height: "40px", borderRadius: "50%" }}
             src="https://jhey.dev/media/image/enhanced/headshot-200x200.png"
           />
