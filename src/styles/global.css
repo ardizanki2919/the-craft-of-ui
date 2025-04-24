@@ -213,28 +213,3 @@ body::before {
     transform: translate(calc(100cqi - 100%), 0);
   }
 }
-
-@layer photo-stack {
-  @supports (animation-timeline: scroll()) {
-    .photo-stack img:not(:first-of-type) {
-      opacity: 0;
-      animation: scrollfade both linear;
-      animation-timeline: view();
-
-      &:nth-of-type(2) {
-        animation-range: cover 25% cover 35%;
-      }
-      &:nth-of-type(3) {
-        animation-range: cover 35% cover 45%;
-      }
-      &:nth-of-type(4) {
-        animation-range: cover 45% cover 55%;
-      }
-    }
-    @keyframes scrollfade {
-      to {
-        opacity: 1;
-      }
-    }
-  }
-}
