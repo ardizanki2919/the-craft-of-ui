@@ -208,6 +208,12 @@ body::before {
   }
 }
 
+@keyframes move {
+  50% {
+    transform: translate(calc(100cqi - 100%), 0);
+  }
+}
+
 @layer photo-stack {
   @supports (animation-timeline: scroll()) {
     .photo-stack img:not(:first-of-type) {

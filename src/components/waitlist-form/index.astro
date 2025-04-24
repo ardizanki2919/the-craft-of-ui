@@ -37,18 +37,19 @@ const { id } = Astro.props;
         <label class="sr-only" for={`${id}-email`}>Email Address</label>
         <div
           class={clsx(
-            "relative flex flex-1 has-[:invalid:not(:placeholder-shown)]:[&_div]:[--show:1]",
+            "relative flex flex-1 focus-within:has-[:invalid:not(:placeholder-shown)]:[&_div]:[--show:1]",
           )}
         >
           <div
             class={clsx(
-              "[clip-path:inset(-200%_0_0_0)] absolute -translate-y-full inset-0 pointer-events-none",
+              "[clip-path:inset(-200%_0_0.5px_0)] absolute -translate-y-full inset-0 pointer-events-none",
+              "[container-type:inline-size]",
             )}
           >
             <svg
               class={clsx(
-                "w-12 -translate-x-1/2 translate-y-full absolute -z-20 bottom-0 left-3/4",
-                "motion-safe:[translate:-50%_calc(100%+(var(--show,0)*-50%))]",
+                "w-12 translate-y-full absolute -z-20 bottom-0 left-[55%]",
+                "motion-safe:[translate:0_calc(100%+(var(--show,0)*-50%))]",
                 "motion-safe:transition-transform ease-out delay-200",
               )}
               viewBox="0 0 240 333"
