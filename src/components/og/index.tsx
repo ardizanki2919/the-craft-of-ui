@@ -156,8 +156,15 @@ const OG = ({ title }: { title: string }) => {
           </div>
           <img
             alt=""
-            style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-            src="https://jhey.dev/media/image/enhanced/headshot-200x200.png"
+            style={{
+              backgroundColor: "#888",
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+            }}
+            src="https://craftofui.dev/headshot.jpeg"
+            width="40"
+            height="40"
           />
         </div>
       </div>
