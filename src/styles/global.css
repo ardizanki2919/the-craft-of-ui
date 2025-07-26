@@ -207,9 +207,3 @@ body::before {
     }
   }
 }
-
-@keyframes move {
-  50% {
-    transform: translate(calc(100cqi - 100%), 0);
-  }
-}
